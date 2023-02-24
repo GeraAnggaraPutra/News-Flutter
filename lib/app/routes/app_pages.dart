@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:flutter_getx/app/modules/dashboard/bindings/dashboard_binding.dart';
+import 'package:flutter_getx/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:flutter_getx/app/modules/home/bindings/home_binding.dart';
 import 'package:flutter_getx/app/modules/home/views/home_view.dart';
 import 'package:flutter_getx/app/modules/login/bindings/login_binding.dart';
@@ -22,6 +24,11 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.DASHBOARD,
+      page: () => DashboardView(),
+      binding: DashboardBinding(),
     ),
   ];
 }

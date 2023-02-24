@@ -22,7 +22,7 @@ class LoginView extends GetView<LoginController> {
                 fit: BoxFit.cover,
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 controller: controller.emailController,
@@ -33,7 +33,7 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(
                 left: 15.0,
                 right: 15.0,
