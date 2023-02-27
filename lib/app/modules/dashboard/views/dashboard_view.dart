@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../data/entertainment_response.dart';
 import '../../../data/headline_response.dart';
 import '../../../data/sports_response.dart';
 import '../../../data/technology_response.dart';
+import '../../home/views/home_view.dart';
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
@@ -14,6 +16,7 @@ class DashboardView extends GetView<DashboardController> {
   Widget build(BuildContext context) {
     DashboardController controller = Get.put(DashboardController());
     final ScrollController scrollController = ScrollController();
+    final auth = GetStorage();
     // Mendefinisikan sebuah widget bernama build dengan tipe StatelessWidget yang memerlukan BuildContext.
     return SafeArea(
       // Widget SafeArea menempatkan semua konten widget ke dalam area yang aman (safe area) dari layar.
@@ -22,6 +25,14 @@ class DashboardView extends GetView<DashboardController> {
         // Widget DefaultTabController digunakan untuk mengatur tab di aplikasi.
         child: Scaffold(
           // Widget Scaffold digunakan sebagai struktur dasar aplikasi.
+          floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              await auth.erase();
+              Get.offAll(() => HomeView());
+            },
+            backgroundColor: Colors.redAccent,
+            child: const Icon(Icons.logout_rounded),
+          ),
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(120.0),
             // Widget PreferredSize digunakan untuk menyesuaikan tinggi appBar.
@@ -35,10 +46,9 @@ class DashboardView extends GetView<DashboardController> {
                     textAlign: TextAlign.end,
                     // Properti textAlign digunakan untuk menentukan perataan teks.
                   ),
-                  subtitle: const Text(
-                    "Gera Anggara",
+                  subtitle: Text(
+                    auth.read('full_name').toString(),
                     textAlign: TextAlign.end,
-                    // Properti textAlign digunakan untuk menentukan perataan teks.
                   ),
                   trailing: Container(
                     // Widget Container digunakan untuk mengatur tampilan konten dalam kotak.
