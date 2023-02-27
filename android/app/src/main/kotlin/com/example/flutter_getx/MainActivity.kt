@@ -1,4 +1,4 @@
-package com.project.ujikom.flutter_getx
+package com.example.flutter_getx
 
 import io.flutter.embedding.android.FlutterActivity
 
