@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -21,7 +22,7 @@ class DashboardView extends GetView<DashboardController> {
     return SafeArea(
       // Widget SafeArea menempatkan semua konten widget ke dalam area yang aman (safe area) dari layar.
       child: DefaultTabController(
-        length: 4,
+        length: 5,
         // Widget DefaultTabController digunakan untuk mengatur tab di aplikasi.
         child: Scaffold(
           // Widget Scaffold digunakan sebagai struktur dasar aplikasi.
@@ -84,6 +85,7 @@ class DashboardView extends GetView<DashboardController> {
                       Tab(text: "Teknologi"),
                       Tab(text: "Olahraga"),
                       Tab(text: "Hiburan"),
+                      Tab(text: "Profile"),
                     ],
                   ),
                 ),
@@ -98,8 +100,101 @@ class DashboardView extends GetView<DashboardController> {
               technology(controller, scrollController),
               entertainment(controller, scrollController),
               sports(controller, scrollController),
+              profile(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Center profile() {
+    final auth = GetStorage();
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(17),
+        child: Column(
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage:
+                  NetworkImage('https://loremflickr.com/320/240/people'),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              child: Text(
+                auth.read('full_name').toString(),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10, bottom: 14),
+              child: Text(
+                'Developer',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: FloatingActionButton(
+                    onPressed: () {},
+                    child: Icon(FontAwesomeIcons.facebook),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: FloatingActionButton(
+                    onPressed: () {},
+                    child: Icon(FontAwesomeIcons.github),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: FloatingActionButton(
+                    onPressed: () {},
+                    child: Icon(FontAwesomeIcons.instagram),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: FloatingActionButton(
+                    onPressed: () {},
+                    child: Icon(FontAwesomeIcons.linkedin),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 13, bottom: 10,),
+                  child: Text(
+                    'About',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 26,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Hi, my name is Gera Anggara Putra. I am developer from Bandung, Indonesia. I like learning programming languages',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

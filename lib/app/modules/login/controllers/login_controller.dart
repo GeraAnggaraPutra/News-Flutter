@@ -50,6 +50,7 @@ class LoginController extends GetxController {
     if (decodedResponse['success'] == true) {
       authToken.write('token', decodedResponse['access_token']);
       authToken.write('full_name', decodedResponse['full_name']);
+      authToken.write('email', decodedResponse['email']);
       Get.offAllNamed('/home');
     } else {
       Get.snackbar('Error', decodedResponse['message'],
