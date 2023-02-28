@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../data/entertainment_response.dart';
@@ -124,10 +125,11 @@ class DashboardView extends GetView<DashboardController> {
               margin: EdgeInsets.only(top: 10),
               child: Text(
                 auth.read('full_name').toString(),
-                style: TextStyle(
+                style: GoogleFonts.robotoSlab(
+                    textStyle: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                ),
+                )),
               ),
             ),
             Container(
@@ -147,6 +149,7 @@ class DashboardView extends GetView<DashboardController> {
                   child: FloatingActionButton(
                     onPressed: () {},
                     child: Icon(FontAwesomeIcons.facebook),
+                    backgroundColor: Colors.black,
                   ),
                 ),
                 Padding(
@@ -154,6 +157,7 @@ class DashboardView extends GetView<DashboardController> {
                   child: FloatingActionButton(
                     onPressed: () {},
                     child: Icon(FontAwesomeIcons.github),
+                    backgroundColor: Colors.black,
                   ),
                 ),
                 Padding(
@@ -161,6 +165,7 @@ class DashboardView extends GetView<DashboardController> {
                   child: FloatingActionButton(
                     onPressed: () {},
                     child: Icon(FontAwesomeIcons.instagram),
+                    backgroundColor: Colors.black,
                   ),
                 ),
                 Padding(
@@ -168,6 +173,7 @@ class DashboardView extends GetView<DashboardController> {
                   child: FloatingActionButton(
                     onPressed: () {},
                     child: Icon(FontAwesomeIcons.linkedin),
+                    backgroundColor: Colors.black,
                   ),
                 ),
               ],
@@ -177,7 +183,10 @@ class DashboardView extends GetView<DashboardController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: 13, bottom: 10,),
+                  margin: EdgeInsets.only(
+                    top: 13,
+                    bottom: 10,
+                  ),
                   child: Text(
                     'About',
                     style: TextStyle(
@@ -187,12 +196,78 @@ class DashboardView extends GetView<DashboardController> {
                   ),
                 ),
                 Text(
-                  'Hi, my name is Gera Anggara Putra. I am developer from Bandung, Indonesia. I like learning programming languages',
-                  style: TextStyle(
-                    fontSize: 18,
+                  "Hi, my name is Gera Anggara Putra. I am developer from Bandung, Indonesia. I like learning programming languages. I like to make applications using the Laravel framework, I'm also currently exploring React JS.",
+                  style: GoogleFonts.openSans(
+                    textStyle: TextStyle(
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ],
+            ),
+            SizedBox(height: 20,),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: FloatingActionButton.small(
+                      onPressed: () {},
+                      child: Icon(FontAwesomeIcons.laravel),
+                      backgroundColor: Colors.black,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: FloatingActionButton.small(
+                      onPressed: () {},
+                      child: Icon(FontAwesomeIcons.bootstrap),
+                      backgroundColor: Colors.black,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: FloatingActionButton.small(
+                      onPressed: () {},
+                      child: Icon(FontAwesomeIcons.react),
+                      backgroundColor: Colors.black,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: FloatingActionButton.small(
+                      onPressed: () {},
+                      child: Icon(FontAwesomeIcons.html5),
+                      backgroundColor: Colors.black,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: FloatingActionButton.small(
+                      onPressed: () {},
+                      child: Icon(FontAwesomeIcons.css3),
+                      backgroundColor: Colors.black,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: FloatingActionButton.small(
+                      onPressed: () {},
+                      child: Icon(FontAwesomeIcons.php),
+                      backgroundColor: Colors.black,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: FloatingActionButton.small(
+                      onPressed: () {},
+                      child: Icon(Icons.javascript),
+                      backgroundColor: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
