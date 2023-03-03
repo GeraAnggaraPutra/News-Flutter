@@ -286,7 +286,7 @@ class DashboardView extends GetView<DashboardController> {
           return Center(
             child: Lottie.network(
               // Menggunakan animasi Lottie untuk tampilan loading
-              'https://gist.githubusercontent.com/olipiskandar/4f08ac098c81c32ebc02c55f5b11127b/raw/6e21dc500323da795e8b61b5558748b5c7885157/loading.json',
+              'https://assets6.lottiefiles.com/packages/lf20_x62chJ.json',
               repeat: true,
               width: MediaQuery.of(context).size.width / 1,
             ),

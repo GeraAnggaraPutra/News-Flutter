@@ -19,18 +19,20 @@ class HomeView extends GetView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Lottie.network(
-              'https://gist.githubusercontent.com/olipiskandar/2095343e6b34255dcfb042166c4a3283/raw/d76e1121a2124640481edcf6e7712130304d6236/praujikom_kucing.json',
+              'https://assets5.lottiefiles.com/packages/lf20_597nlu.json',
               fit: BoxFit.cover,
             ),
             const SizedBox(
               height: 15,
             ),
-            Text(
-              'Aplikasi Portal Berita Indonesia',
-              style: GoogleFonts.roboto(
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
+            Center(
+              child: Text(
+                'Portal Berita Indonesia',
+                style: GoogleFonts.roboto(
+                  textStyle: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  ),
                 ),
               ),
             ),

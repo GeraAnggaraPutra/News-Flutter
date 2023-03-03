@@ -9,7 +9,7 @@ void main() async {
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Application",
+      title: "News",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),
