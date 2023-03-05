@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
 
 import '../controllers/login_controller.dart';
@@ -11,15 +10,17 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     LoginController controller = Get.put(LoginController());
     return Scaffold(
-      backgroundColor: HexColor('#feeee8'),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 70.0),
-              child: Lottie.network(
-                'https://gist.githubusercontent.com/olipiskandar/2095343e6b34255dcfb042166c4a3283/raw/d76e1121a2124640481edcf6e7712130304d6236/praujikom_kucing.json',
-                fit: BoxFit.cover,
+              child: Container(
+                height: 300,
+                child: Lottie.network(
+                  'https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Padding(
@@ -27,10 +28,23 @@ class LoginView extends GetView<LoginController> {
               child: TextField(
                 controller: controller.emailController,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
-                  hintText: 'Masukan Email',
-                ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black
+                      ),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.person,
+                      size: 35,
+                      color: Colors.black,
+                    ),
+                    labelText: "Email",
+                    labelStyle: TextStyle(color: Colors.black),
+                    hintText: 'Masukkan email',
+                    hintStyle: TextStyle(
+                      color: Colors.black
+                    ),
+                  ),
               ),
             ),
             Padding(
@@ -44,10 +58,24 @@ class LoginView extends GetView<LoginController> {
                 controller: controller.passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                  hintText: 'Masukan Password',
-                ),
+                     focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black
+                      ),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      size: 35,
+                      color: Colors.black,
+                    ),
+                    labelText: "Password",
+                    labelStyle: TextStyle(color: Colors.black),
+                    hintText: 'Masukkan Password',
+                    hintStyle: TextStyle(
+                      color: Colors.black
+                    ),
+                    fillColor: Colors.black,
+                  ),
               ),
             ),
             const SizedBox(

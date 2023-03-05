@@ -2,20 +2,18 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_getx/app/modules/home/views/home_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
-import '../../../utils/api.dart';
-import '../../dashboard/views/dashboard_view.dart';
 import 'package:http/http.dart' as http;
 
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
 
   final _getConnect = GetConnect();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final authToken = GetStorage();
+  
 
   @override
   void onInit() {
@@ -51,7 +49,7 @@ class LoginController extends GetxController {
       authToken.write('token', decodedResponse['access_token']);
       authToken.write('full_name', decodedResponse['full_name']);
       authToken.write('email', decodedResponse['email']);
-      Get.offAllNamed('/home');
+      Get.off(HomeView());
     } else {
       Get.snackbar('Error', decodedResponse['message'],
           icon: const Icon(Icons.error),

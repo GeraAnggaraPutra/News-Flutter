@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx/app/modules/dashboard/views/detail_news.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../../data/entertainment_response.dart';
 import '../../../data/headline_response.dart';
 import '../../../data/sports_response.dart';
@@ -17,6 +18,7 @@ class DashboardView extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     DashboardController controller = Get.put(DashboardController());
+
     final ScrollController scrollController = ScrollController();
     final auth = GetStorage();
     // Mendefinisikan sebuah widget bernama build dengan tipe StatelessWidget yang memerlukan BuildContext.
@@ -42,6 +44,15 @@ class DashboardView extends GetView<DashboardController> {
               // Widget Column adalah widget yang menyatukan widget-childnya secara vertikal.
               children: [
                 ListTile(
+                  leading: Text(
+                    'NEWS',
+                    style: GoogleFonts.smokum(
+                      textStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 33,
+                      ),
+                    ),
+                  ),
                   // Widget ListTile digunakan untuk menampilkan tampilan list sederhana.
                   title: const Text(
                     "Hallo!",
@@ -60,7 +71,7 @@ class DashboardView extends GetView<DashboardController> {
                     height: 50.0,
                     child: Lottie.network(
                       // Widget Lottie.network digunakan untuk menampilkan animasi Lottie dari suatu URL.
-                      'https://gist.githubusercontent.com/olipiskandar/2095343e6b34255dcfb042166c4a3283/raw/d76e1121a2124640481edcf6e7712130304d6236/praujikom_kucing.json',
+                      'https://assets10.lottiefiles.com/packages/lf20_8pL7DHZXvo.json',
                       fit: BoxFit.cover,
                       // Properti fit digunakan untuk menyesuaikan ukuran konten agar sesuai dengan kontainer.
                     ),
@@ -99,8 +110,8 @@ class DashboardView extends GetView<DashboardController> {
               // Properti children digunakan untuk menentukan konten yang akan ditampilkan pada masing-masing tab.
               headline(controller, scrollController),
               technology(controller, scrollController),
-              entertainment(controller, scrollController),
               sports(controller, scrollController),
+              entertainment(controller, scrollController),
               profile(),
             ],
           ),
@@ -118,8 +129,11 @@ class DashboardView extends GetView<DashboardController> {
           children: [
             CircleAvatar(
               radius: 50,
-              backgroundImage:
-                  NetworkImage('https://loremflickr.com/320/240/people'),
+              backgroundColor: HexColor('#feeee8'),
+              child: Lottie.network(
+                "https://assets10.lottiefiles.com/packages/lf20_8pL7DHZXvo.json",
+                fit: BoxFit.cover,
+              ),
             ),
             Container(
               margin: EdgeInsets.only(top: 10),
@@ -147,33 +161,47 @@ class DashboardView extends GetView<DashboardController> {
                 Padding(
                   padding: const EdgeInsets.all(3),
                   child: FloatingActionButton(
-                    onPressed: () {},
-                    child: Icon(FontAwesomeIcons.facebook),
+                    onPressed: () =>
+                        launch('https://facebook.com/Gerd%20Young'),
+                    child: Icon(
+                      FontAwesomeIcons.facebook,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: Colors.blue,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: FloatingActionButton(
+                    onPressed: () =>
+                        launch('https://github.com/GeraAnggaraPutra'),
+                    child: Icon(
+                      FontAwesomeIcons.github,
+                      color: Colors.white,
+                    ),
                     backgroundColor: Colors.black,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(3),
                   child: FloatingActionButton(
-                    onPressed: () {},
-                    child: Icon(FontAwesomeIcons.github),
-                    backgroundColor: Colors.black,
+                    onPressed: () => launch('https://instagram.com/g_raap1'),
+                    child: Icon(
+                      FontAwesomeIcons.instagram,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: Colors.purpleAccent,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(3),
                   child: FloatingActionButton(
-                    onPressed: () {},
-                    child: Icon(FontAwesomeIcons.instagram),
-                    backgroundColor: Colors.black,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: FloatingActionButton(
-                    onPressed: () {},
-                    child: Icon(FontAwesomeIcons.linkedin),
-                    backgroundColor: Colors.black,
+                    onPressed: () => launch('https://twitter.com/bg_gd1'),
+                    child: Icon(
+                      FontAwesomeIcons.twitter,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: Colors.blueAccent
                   ),
                 ),
               ],
@@ -205,7 +233,9 @@ class DashboardView extends GetView<DashboardController> {
                 ),
               ],
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -213,57 +243,78 @@ class DashboardView extends GetView<DashboardController> {
                   Padding(
                     padding: const EdgeInsets.all(3),
                     child: FloatingActionButton.small(
-                      onPressed: () {},
-                      child: Icon(FontAwesomeIcons.laravel),
-                      backgroundColor: Colors.black,
+                      onPressed: () => launch('https://laravel.com/'),
+                      child: Icon(
+                        FontAwesomeIcons.laravel,
+                        color: Colors.white,
+                      ),
+                      backgroundColor: Color.fromARGB(137, 226, 2, 2),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(3),
                     child: FloatingActionButton.small(
-                      onPressed: () {},
-                      child: Icon(FontAwesomeIcons.bootstrap),
-                      backgroundColor: Colors.black,
+                      onPressed: () => launch('https://getbootstrap.com/'),
+                      child: Icon(
+                        FontAwesomeIcons.bootstrap,
+                        color: Colors.white,
+                      ),
+                      backgroundColor: Color.fromARGB(137, 226, 2, 2),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(3),
                     child: FloatingActionButton.small(
-                      onPressed: () {},
-                      child: Icon(FontAwesomeIcons.react),
-                      backgroundColor: Colors.black,
+                      onPressed: () => launch('https://reactjs.org/'),
+                      child: Icon(
+                        FontAwesomeIcons.react,
+                        color: Colors.white,
+                      ),
+                      backgroundColor: Color.fromARGB(137, 226, 2, 2),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(3),
                     child: FloatingActionButton.small(
-                      onPressed: () {},
-                      child: Icon(FontAwesomeIcons.html5),
-                      backgroundColor: Colors.black,
+                      onPressed: () => launch('https://html.com/'),
+                      child: Icon(
+                        FontAwesomeIcons.html5,
+                        color: Colors.white,
+                      ),
+                      backgroundColor: Color.fromARGB(137, 226, 2, 2),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(3),
                     child: FloatingActionButton.small(
-                      onPressed: () {},
-                      child: Icon(FontAwesomeIcons.css3),
-                      backgroundColor: Colors.black,
+                      onPressed: () => launch('https://www.w3.org/Style/CSS/'),
+                      child: Icon(
+                        FontAwesomeIcons.css3,
+                        color: Colors.white,
+                      ),
+                      backgroundColor: Color.fromARGB(137, 226, 2, 2),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(3),
                     child: FloatingActionButton.small(
-                      onPressed: () {},
-                      child: Icon(FontAwesomeIcons.php),
-                      backgroundColor: Colors.black,
+                      onPressed: () => launch('https://www.php.net/'),
+                      child: Icon(
+                        FontAwesomeIcons.php,
+                        color: Colors.white,
+                      ),
+                      backgroundColor: Color.fromARGB(137, 226, 2, 2),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(3),
                     child: FloatingActionButton.small(
-                      onPressed: () {},
-                      child: Icon(Icons.javascript),
-                      backgroundColor: Colors.black,
+                      onPressed: () => launch('https://www.javascript.com/'),
+                      child: Icon(
+                        Icons.javascript,
+                        color: Colors.white,
+                      ),
+                      backgroundColor: Color.fromARGB(137, 226, 2, 2),
                     ),
                   ),
                 ],
@@ -312,49 +363,58 @@ class DashboardView extends GetView<DashboardController> {
                 bottom: 5,
               ),
               height: 110,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Widget untuk menampilkan gambar headline dengan menggunakan url gambar dari data yang diterima
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      snapshot.data!.data![index].urlToImage.toString(),
-                      height: 130,
-                      width: 130,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Widget untuk menampilkan judul headline dengan menggunakan data yang diterima
-                        Text(
-                          snapshot.data!.data![index].title.toString(),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
+              child: InkWell(
+                onTap: () {
+                  Get.to(DetailNews(), arguments: snapshot.data!.data![index]);
+                },
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
+                          snapshot.data!.data![index].urlToImage.toString(),
+                          height: 130,
+                          width: 130,
+                          fit: BoxFit.cover,
                         ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        // Widget untuk menampilkan informasi author dan sumber headline dengan menggunakan data yang diterima
-                        Column(
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            // Widget untuk menampilkan judul headline dengan menggunakan data yang diterima
                             Text(
-                                'Author : ${snapshot.data!.data![index].author}'),
-                            Text('Sumber :${snapshot.data!.data![index].name}'),
+                              snapshot.data!.data![index].title.toString(),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            // Widget untuk menampilkan informasi author dan sumber headline dengan menggunakan data yang diterima
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    'Author : ${snapshot.data!.data![index].author}'),
+                                Text(
+                                    'Sumber :${snapshot.data!.data![index].name}'),
+                              ],
+                            ),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             );
           },
@@ -400,49 +460,55 @@ class DashboardView extends GetView<DashboardController> {
                 bottom: 5,
               ),
               height: 110,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Widget untuk menampilkan gambar headline dengan menggunakan url gambar dari data yang diterima
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      snapshot.data!.data![index].urlToImage.toString(),
-                      height: 130,
-                      width: 130,
-                      fit: BoxFit.cover,
+              child: InkWell(
+                onTap: () {
+                  Get.to(DetailNews(), arguments: snapshot.data!.data![index]);
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Widget untuk menampilkan gambar headline dengan menggunakan url gambar dari data yang diterima
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.network(
+                        snapshot.data!.data![index].urlToImage.toString(),
+                        height: 130,
+                        width: 130,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Widget untuk menampilkan judul headline dengan menggunakan data yang diterima
-                        Text(
-                          snapshot.data!.data![index].title.toString(),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        // Widget untuk menampilkan informasi author dan sumber headline dengan menggunakan data yang diterima
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                                'Author : ${snapshot.data!.data![index].author}'),
-                            Text('Sumber :${snapshot.data!.data![index].name}'),
-                          ],
-                        ),
-                      ],
+                    const SizedBox(
+                      width: 10,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // Widget untuk menampilkan judul headline dengan menggunakan data yang diterima
+                          Text(
+                            snapshot.data!.data![index].title.toString(),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          // Widget untuk menampilkan informasi author dan sumber headline dengan menggunakan data yang diterima
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  'Author : ${snapshot.data!.data![index].author}'),
+                              Text(
+                                  'Sumber :${snapshot.data!.data![index].name}'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },
@@ -488,49 +554,55 @@ class DashboardView extends GetView<DashboardController> {
                 bottom: 5,
               ),
               height: 110,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Widget untuk menampilkan gambar headline dengan menggunakan url gambar dari data yang diterima
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      snapshot.data!.data![index].urlToImage.toString(),
-                      height: 130,
-                      width: 130,
-                      fit: BoxFit.cover,
+              child: InkWell(
+                onTap: () {
+                  Get.to(DetailNews(), arguments: snapshot.data!.data![index]);
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Widget untuk menampilkan gambar headline dengan menggunakan url gambar dari data yang diterima
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.network(
+                        snapshot.data!.data![index].urlToImage.toString(),
+                        height: 130,
+                        width: 130,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Widget untuk menampilkan judul headline dengan menggunakan data yang diterima
-                        Text(
-                          snapshot.data!.data![index].title.toString(),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        // Widget untuk menampilkan informasi author dan sumber headline dengan menggunakan data yang diterima
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                                'Author : ${snapshot.data!.data![index].author}'),
-                            Text('Sumber :${snapshot.data!.data![index].name}'),
-                          ],
-                        ),
-                      ],
+                    const SizedBox(
+                      width: 10,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // Widget untuk menampilkan judul headline dengan menggunakan data yang diterima
+                          Text(
+                            snapshot.data!.data![index].title.toString(),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          // Widget untuk menampilkan informasi author dan sumber headline dengan menggunakan data yang diterima
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  'Author : ${snapshot.data!.data![index].author}'),
+                              Text(
+                                  'Sumber :${snapshot.data!.data![index].name}'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },
@@ -576,49 +648,55 @@ class DashboardView extends GetView<DashboardController> {
                 bottom: 5,
               ),
               height: 110,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Widget untuk menampilkan gambar headline dengan menggunakan url gambar dari data yang diterima
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      snapshot.data!.data![index].urlToImage.toString(),
-                      height: 130,
-                      width: 130,
-                      fit: BoxFit.cover,
+              child: InkWell(
+                onTap: () {
+                  Get.to(DetailNews(), arguments: snapshot.data!.data![index]);
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Widget untuk menampilkan gambar headline dengan menggunakan url gambar dari data yang diterima
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.network(
+                        snapshot.data!.data![index].urlToImage.toString(),
+                        height: 130,
+                        width: 130,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Widget untuk menampilkan judul headline dengan menggunakan data yang diterima
-                        Text(
-                          snapshot.data!.data![index].title.toString(),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        // Widget untuk menampilkan informasi author dan sumber headline dengan menggunakan data yang diterima
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                                'Author : ${snapshot.data!.data![index].author}'),
-                            Text('Sumber :${snapshot.data!.data![index].name}'),
-                          ],
-                        ),
-                      ],
+                    const SizedBox(
+                      width: 10,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // Widget untuk menampilkan judul headline dengan menggunakan data yang diterima
+                          Text(
+                            snapshot.data!.data![index].title.toString(),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          // Widget untuk menampilkan informasi author dan sumber headline dengan menggunakan data yang diterima
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  'Author : ${snapshot.data!.data![index].author}'),
+                              Text(
+                                  'Sumber :${snapshot.data!.data![index].name}'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },
