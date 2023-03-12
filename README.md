@@ -1,4 +1,4 @@
-# flutter_getx
+# ujikom 2023
 
 A new Flutter project.
 
